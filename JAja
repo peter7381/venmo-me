@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Assignment #1</title>
+		<style type="text/css">
+			h1 {text-align:left;}
+			h2 {text-align:left;}
+			h3 {text-align:left;}
+			form {text-align: left;}
+			body {font-family:"Verdana";} 
+			td,th {padding:5px;} 
+			
+		</style>
+	</head>
+	
+	
+	
+	
+	
+	<body>
+		<h1> Widget Ordering System </h1>
+		<hr width="100%" />
+		<h2> Customer Information </h2>
+		
+		<form method="post" action="widgets.php">
+			<p> 
+				Customer Type:  <input type="radio" name="types"/> Premier <input type="radio" name="types" value="elite" checked = "yes"/> Elite
+			</p>
+			
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								Customer First Name:
+							</td>
+							<td>
+								<input type="text" name="FirstName" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Customer Last Name:
+							</td>
+							<td>
+								<input type="text" name="LastName" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Street:
+							</td>
+							<td>
+								<input type="text" name="Street" /> 
+							</td>
+						</tr>
+						<tr>
+							<td>
+								City:
+							</td>
+							<td>
+								<input type="text" name="City" /> 
+							</td>
+						</tr>
+						<tr>
+							<td>
+								State
+							</td>
+							<td>
+								<select name="state" size="1">
+								  <option value="CT">CT</option>
+								  <option value="MA">MA</option>
+								  <option value="ME">ME</option>
+								  <option value="NH">NH</option>
+								  <option value="RI" selected>RI</option>
+								  <option value="VT">VT</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Zip Code:
+							</td>
+							<td>
+								<input type="text" name="ZipCode" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			
+			
+			<h2> Order Information </h2>
+		
+		
+			<table border="2">
+
+				<tr>
+					<td width="15%">QTY</td> 
+					<td width="60%"style="text-align:center">Item</td> 
+					<td width ="25%">Item Price</td>
+				</tr>
+
+				<tr>
+					<td> <input type="number" value="0" min="0" max="100" name="qty1"></td> 
+					<td>Widget #8493 - Extra Crunchy</td> 
+					<td style="text-align:right">$5.71</td>
+				</tr>
+				
+				<tr>
+					<td> <input type="number" value="0" min="0" max="100" name="qty2"></td> 
+					<td>Widget #3423 - Super Slippery</td> 
+					<td style="text-align:right">$4.21</td>
+				</tr>
+				
+				<tr>
+					<td> <input type="number" value="0" min="0" max="100" name="qty3"></td> 
+					<td>Widget #2382 - Very Wobbly</td> 
+					<td style="text-align:right">$2.51</td>
+				</tr>
+				
+				<tr>
+					<td> <input type="number" value="0" min="0" max="100" name="qty4"></td> 
+					<td>Widget #4523 - Extremely Sticky</td> 
+					<td style="text-align:right">$1.21</td>
+				</tr>
+				
+				<tr>
+					<td> <input type="number" value="0" min="0" max="100" name="qty5"></td> 
+					<td>Widget #4523 - Wonderfully Wacky </td> 
+					<td style="text-align:right">$8.51</td>
+				</tr>
+				
+				
+</table>
+			
+			<p>  
+				<input type="submit" value="Submit your Order"  />
+				<input type="reset" value="Reset your Order Form" />
+			</p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</form>
+		
+		
+		<hr />
+		<h2> Order Summary </h2>
+		<?php
+			if($_POST) {
+			}
+			else {
+				die("<p> No order information supplied. </p>");
+			}
+			
+			$types = $_POST['types'];
+			$FirstName = $_POST['FirstName'];
+			$LastName = $_POST['LastName'];
+			$street = $_POST['Street'];
+			$City = $_POST['City'];
+			$state = $_POST['state'];
+			$ZipCode = $_POST['ZipCode'];
+			
+			$qty1 = $_POST['qty1'];
+			$qp1 = $qty1 * 5.71;
+			$qty2 = $_POST['qty2'];
+			$qp2 = $qty2 * 4.21;
+			$qty3 = $_POST['qty3'];
+			$qp3 = $qty3 * 2.51;
+			$qty4 = $_POST['qty4'];
+			$qp4 = $qty4 * 1.21;
+			$qty5 = $_POST['qty5'];
+			$qp5 = $qty5 * 8.51;
+			
+			$total = $qp1+$qp2+$qp3+$qp4+$qp5;
+			$discount = $_POST['types'];
+		?>
+		
+		<?php 
+		echo "Dear ", $FirstName, ","; ?>
+		<br/> </br>
+		<?php echo "Thank you for placing an order. You can expext to receive your widgets in ", $City, " by the end of the week.";
+		?>
+		</br></br>
+		<table border="1"> 
+			<tr>
+				<th>QTY</th>
+				<th>Item</th>
+				<th>Item Price</th>
+			</tr>
+			<tr> 
+				<td> <?php echo $qty1 ?> </td>
+				<td>Widget #8493 - Extra Crunchy</td>
+				<td style="text-align:right">$<?php echo $qp1 ?></td>
+			</tr>
+			<tr>
+				<td> <?php echo $qty2 ?> </td>
+				<td>Widget #3423 - Super Slippery</td>
+				<td style="text-align:right">$<?php echo $qp2 ?></td>
+			</tr>
+			<tr>
+				<td> <?php echo $qty3 ?> </td>
+				<td>Widget #2382 - Very Wobbly</td>
+				<td style="text-align:right">$<?php echo $qp3 ?></td>
+			</tr>
+			<tr>
+				<td> <?php echo $qty4 ?> </td>
+				<td>Widget #4523 - Extremely Sticky</td>
+				<td style="text-align:right">$<?php echo $qp4 ?></td>
+			</tr>
+			<tr>
+				<td> <?php echo $qty5 ?> </td>
+				<td>Widget #6851 - Wonderfully Wacky</td>
+				<td style="text-align:right">$<?php echo $qp5 ?></td>
+			</tr>
+			<tr>
+				<td> </td>
+				<td style="text-align:right">Product Total</td>
+				<td style="text-align:right">$<?php echo $total ?> </td>
+			</tr>
+			<tr> 
+				<td> </td>
+				<td style="text-align:right"> Final cost</td>
+				<td style="text-align:right">$<?php 
+				if ($discount == 'elite'){
+				$total = $total-($total*0.2);}
+				echo ($total);?> </td>
+			</tr>
+		</table> <br/>
+	</body>
+	
+	
+	
+</html>
